@@ -7,3 +7,30 @@ services:
     command: python  manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
+      # Install dependencies
+    depends_on:
+      db:
+      # Wait for the database to be healthy before starting the web service
+        condition: service_healthy
+    restart: always
+  db:
+    image: postgres:15
+    volumes:
+    # Persist Postgres data
+      - ../data:/var/lib/postgresql/data/
+    environment:
+       # Set Postgres to trust authentication for simplicity 
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      # Set default database name
+      - POSTGRES_DB=ctrl_comb_db
+    ports:
+      - "5432:5432"
+    healthcheck:
+    # Check if Postgres is ready to accept connections
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  pg_data:
