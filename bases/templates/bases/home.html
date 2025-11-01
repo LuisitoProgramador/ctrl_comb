@@ -1,13 +1,14 @@
 {% extends "base.html" %}
-{% block title %}Acerca de Nosotros - App Control Combustible{% endblock %}
+{% block title %}App Control Combustible{% endblock %}
 {% block content %}
 
 <!-- Creation card -->
-{% include "fragments/title.html" with title="Acerca de la App" %}
-{% include "fragments/card_start.html" with header="About Card Header" %}
+{% include "fragments/title.html" with title="Home" %}
+{% include "fragments/card_start.html" with header="Welcome to the App" %}
 <h4 class="card-title">Danger card title</h4>
 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
     content.</p>
 {% include "fragments/card_end.html" %}
 <!-- End creation card -->
+
 {% endblock %}
