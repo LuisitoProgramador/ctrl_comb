@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Creation card -->
+{% include "fragments/title.html" with title="New User" %}
+{% include "fragments/card_start.html" with header="Create a new account" %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-warning">Register</button>
+</form>
+{% include "fragments/card_end.html" %}
+<!-- End creation card -->
+
+{% endblock %}

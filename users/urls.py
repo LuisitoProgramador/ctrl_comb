@@ -5,4 +5,5 @@ app_name = 'users'
 
 urlpatterns = [
     path('', include('django.contrib.auth.urls')),
+    path('register/', RegisterUserView.as_view(), name='register'),
 ]
