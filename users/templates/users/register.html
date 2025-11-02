@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 {% block content %}
 
 <!-- Creation card -->
@@ -6,7 +7,7 @@
 {% include "fragments/card_start.html" with header="Create a new account" %}
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form|crispy }}
     <button type="submit" class="btn btn-warning">Register</button>
 </form>
 {% include "fragments/card_end.html" %}
