@@ -5,8 +5,8 @@
 <!-- Creation card -->
 {% include "fragments/title.html" with title="New User" %}
 {% include "fragments/card_start.html" with header="Create a new account" %}
-<form method="post">
-    {% csrf_token %}
+<form hx-post="{% url 'users:register' %}" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-target="#body">
+    <!-- {% csrf_token %} -->
     {{ form|crispy }}
     <button type="submit" class="btn btn-warning">Register</button>
 </form>

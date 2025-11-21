@@ -8,8 +8,7 @@
 <h4 class="card-title">{% if user.is_authenticated %} Hello {{ user.username }} {% else %}
     <a href="{% url 'users:login' %}">Login</a> {% endif %}
 </h4>
-<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-    content.</p>
+<p class="card-text">{% lorem 5 %}</p>
 {% include "fragments/card_end.html" %}
 <!-- End creation card -->
 

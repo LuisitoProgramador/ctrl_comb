@@ -5,8 +5,8 @@
 <!-- Creation card -->
 {% include "fragments/title.html" with title="Login" %}
 {% include "fragments/card_start.html" with header="Login to your account" %}
-<form method="post">
-    {% csrf_token %}
+<form hx-post="{% url 'users:login' %}" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-target="#body">
+    <!-- {% csrf_token %} -->
     {{ form|crispy }}
     <button type="submit" class="btn btn-primary">Login</button>
 </form>

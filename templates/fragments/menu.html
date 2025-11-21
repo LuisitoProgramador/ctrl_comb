@@ -14,9 +14,11 @@
                     <div class="collapse navbar-collapse" id="navbarColor01">
                         <ul class="navbar-nav me-auto">
                             <li class="nav-item">
-                                <a class="nav-link active" href="{% url 'core:home' %}">Home
-                                    <!-- <span class="visually-hidden">(current)</span> -->
-                                </a>
+                                <!-- <a class="nav-link active" href="{% url 'core:home' %}">Home
+                                </a> -->
+                                <div class="nav-link" hx-get="{% url 'core:home' %}" hx-push-url="true"
+                                    hx-trigger="click" hx-target="#body" hx-swap="outerHTML" style="cursor: pointer;">
+                                    Home</div>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Register</a>
@@ -38,15 +40,23 @@
                         </ul>
                         <div class="d-flex">
                             {% if user.is_authenticated %}
-                            <form method="post" action="{% url 'users:logout' %}"> {% csrf_token %} <button
-                                    class="btn btn-light my-2 my-sm-0" type="submit">Logout</button></form>
+
+                            <div class="text-info" hx-post="{% url 'users:logout' %}" hx-trigger="click"
+                                hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-target="#body"
+                                style="cursor: pointer;">Logout
+                            </div>
                             {% else %}
-                            <a class="btn btn-light my-2 my-sm-0" href="{% url 'users:login' %}">Login</a>
-                            |<a class="btn btn-light my-2 my-sm-0" href="{% url 'users:register' %}">Register</a>
-                            | <a class="btn btn-light my-2 my-sm-0" href="{% provider_login_url 'google'%}?next=/">Login
-                                with Google</a>
+
+                            <div class="text-info" hx-get="{% url 'users:login' %}" hx-push-url="true"
+                                hx-trigger="click" hx-target="#body" style="cursor: pointer;">Login</div>&nbsp; &nbsp;
+                            <div class="text-info" hx-get="{% url 'users:register' %}" hx-push-url="true"
+                                hx-trigger="click" hx-target="#body" style="cursor: pointer;" hx-push-url="true">
+                                Register</div>&nbsp; &nbsp;
+                            <div class="text-info" hx-get="{% provider_login_url 'google'%}?next=/" hx-push-url="true"
+                                hx-trigger="click" hx-target="#body" style="cursor: pointer;">Google</div>
                             {% endif %}
                         </div>
+
                     </div>
                 </div>
             </nav>
